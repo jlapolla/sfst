@@ -317,10 +317,10 @@ expects the return value to be `1` according to the specification.
 
 But if the consumer calls `f(2)`, then it's impossible for the developer
 to know what behavior the consumer desires, because the developer did
-not specify what `f(2)` was supposed to do. Since the value of `f(2)` is
-not defined in the specification, the developer is free to do anything
-he wants when the consumer calls `f(2)`. Therefore, we say that calling
-`f(2)` results in **undefined** behavior.
+not specify what `f(2)` was supposed to do. Therefore, we say that
+calling `f(2)` results in **undefined** behavior. Since the value of
+`f(2)` is not defined in the specification, the developer is free to do
+anything he wants when the consumer calls `f(2)`.
 
 The simplest alternative for the developer is to just leave the
 undefined branch blank:
