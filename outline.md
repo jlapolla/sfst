@@ -1,3 +1,40 @@
+# 1. Notation
+
+## Logical notation
+
+### And
+
+The following statements are equivalent:
+
+- `A` and `B` are true.
+- `A ∧ B`.
+
+### Or
+
+The following statements are equivalent:
+
+- Either `A` is true, `B` is true, or both `A` and `B` are true.
+- `A ∨ B`.
+
+### Implication
+
+The following statements are equivalent:
+
+- Whenever `A` is true, `B` is also true.
+- `A` implies `B`.
+- `A -> B`.
+
+Notice that `A -> B` is not equivalent to `B -> A`.
+
+### Equivalence
+
+The following statements are equivalent:
+
+- `A` and `B` have the same truth values.
+- `A` implies `B` and `B` implies `A`.
+- `(A -> B) ∧ (B -> A)`.
+- `A <-> B`.
+
 # 1. Modelling
 
 ## Variable
@@ -485,4 +522,78 @@ Example: recipe book. Initially "Pea Soup" is a class that inherits from
 be hard-coded, or loaded from persistent storage), rather than making a
 class for each new recipe.
 
-## 
+## Assertions
+
+An **assertion** is a logical predicate that applies to a model.
+
+For example, consider a model `X = {a, b, c}`, and an assertion `Y <->
+(a = 3)`. Assertion `Y` is true for all states in `X` that have `a`
+holding the value `3`. For example, assertion `Y` is true for all of the
+following states:
+
+- `{(a, 3), (b, 0), (c, 0)}`.
+- `{(a, 3), (b, 0), (c, 1)}`.
+- `{(a, 3), (b, 1), (c, 0)}`.
+
+Assertion `Y` is false for all of the following states:
+
+- `{(a, 0), (b, 0), (c, 0)}`.
+- `{(a, 1), (b, 0), (c, 1)}`.
+- `{(a, 2), (b, 1), (c, 0)}`.
+
+## Debugging assertions
+
+## Fallacy: You can completely constrain a state with assertions
+
+Consider a model `R = {a, b, c}`. If we want to use assertions to
+identify a single state, we could try the following three assertions:
+
+- `X <-> (a = 0)`.
+- `Y <-> (b = 0)`.
+- `Z <-> (c = 0)`.
+
+There is only one state contained in model `R` that satisfies all three
+assertions `X`, `Y`, and `Z`: state `{(a, 0), (b, 0), (c, 0)}`. At first
+glance, it appears that our three assertions `X`, `Y`, and `Z`
+completely describe and constrain the state of the program.
+
+However, notice that I said there is only one state **contained in**
+model `R` that satisfies the assertions. There are, in fact, multiple
+states **in** model `R` that satisfy the assertions. For example, I'm
+sure there are other variables in our program besides `a`, `b`, and `c`.
+Perhaps we also have a global variable `d`, so that the following states
+also satisfy assertions `X`, `Y`, and `Z`:
+
+- `{(a, 0), (b, 0), (c, 0), (d, 1)}`
+- `{(a, 0), (b, 0), (c, 0), (d, 2)}`
+- `{(a, 0), (b, 0), (c, 0), (d, 3)}`
+
+We thought we had completely described the state of the program with
+assertions `X`, `Y`, and `Z`, but we have to remember that our model `R
+= {a, b, c}` is not reality; it is just a model at a level of
+abstraction that is convenient for analyzing our local code. There are
+an infinite number of coincident models that contain more detail than
+`R`; in those models, there are numerous states that satisfy assertions
+`X`, `Y`, and `Z`.
+
+Perhaps the most detailed model, `Q`, would include the value of every
+electrical signal in the CPU and main memory, as well as the values of
+all bits in non volatile memory. Such a model is not very useful for two
+reasons:
+
+- In addition to the code we are developing, other software running on
+  the computer will affect the state in model `Q`. In general, we cannot
+  predict what other software the consumer will be running, so we cannot
+  fix the state in model `Q`.
+- Typically, our code has to run in multiple environments. For example:
+  different operating systems, different CPU's, different execution
+  engines (e.g. for Python we have CPython, IronPython, PyPy, et
+  cetera). Even for C code, the machine code generated depends on the
+  compiler used, optimization level, debugging symbols, et cetera.
+
+## Specification
+
+## Truth: A completely constrained specification is the code itself
+
+## Truth: You can only prove the correctness of a complete implementation
+
