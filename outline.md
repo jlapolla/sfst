@@ -408,8 +408,8 @@ The possibilities of undefined behavior are endless.
 
 ## Errors and faults
 
-A **fault** is an instance of an **error**. In other words, an error is
-a type of fault.
+A **fault** is an _instance_ of an **error**. In other words, an error is
+a _category_ of fault.
 
 For example, "division by zero" is an **error**. Executing a code that
 divides by zero produces a "division by zero **fault**".
