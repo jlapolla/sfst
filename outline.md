@@ -193,7 +193,7 @@ Model `A` is **equal** to a model `B` if all of the following are true:
 - `B` is a superset of `A`.
 
 In other words, `A` and `B` are equal if they contain the same
-variables.
+variables with the same values.
 
 ### State and model relationships
 
