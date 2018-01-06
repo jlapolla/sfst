@@ -232,8 +232,8 @@ where:
 In this case, even though models `A` and `B` do not have a strict
 superset / subset relationship, the two states `x` and `y` still
 represent the same situation. State `y` contains additional information
-(e.g. the memory location of the symbols `foo` and `bar`), but
-conceptually states `x` and `y` coincide.
+(e.g. the memory location of `foo` and `bar`), but conceptually states
+`x` and `y` coincide.
 
 # 2. Roles
 
