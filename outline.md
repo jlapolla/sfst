@@ -1,3 +1,289 @@
+# 0. Software reuse
+
+## Entities and symbols
+
+### Entities
+
+In software, **_entities_** fall into two categories:
+
+- **_Data entities_**.
+- **_Executable entities_**.
+
+Examples of **_data entities_** include:
+
+- Integers.
+- Strings.
+- Objects.
+
+Examples of **_executable entities_** include:
+
+- Functions.
+- Subroutines.
+
+### Symbols
+
+A **_symbol_** is a textual name that we use to refer to an
+**_entity_**. For example:
+
+- An integer `foo` is a **_data entity_**, and we use the **_symbol_**
+  "foo" to refer to it.
+- A function `frobnicate` is an **_executable entity_**, and we use the
+  **_symbol_** "frobnicate" to refer to it.
+
+### Symbolspaces
+
+A **_symbolspace_** is a set of **_symbols_**. Within a single
+**_symbolspace_**, identical **_symbols_** refer to identical
+**_entities_**.
+
+The set of symbols in a **_symbolspace_** is the set of all **POSSIBLE**
+symbols that could refer to separate **_entities_**. In other words,
+even if the **_symbol_** "bar" in our **_symbolspace_** does not refer
+to an entity, "bar" is still in our **_symbolspace_**.
+
+#### Example 1
+
+Consider a procedural language for a graphing calculator. The language
+mandates that a symbol must consist solely of a single uppercase capital
+Latin letter.
+
+Any code written for the graphing calculator is restricted to the
+symbolspace:
+
+```
+symbolspace = {A, B, C, D, E, F, G, ..., W, X, Y, Z}
+```
+
+#### Example 2
+
+Consider a small procedural language that mandates that a symbol must
+consist solely of uppercase Latin letters. The minimum length of a
+symbol is 1 letter, and the maximum length of a symbol is 3 letters.
+
+Any code written in this procedural language is restricted to the
+symbolspace:
+
+```
+symbolspace = {A, B, ..., Y, Z, AA, AB ..., ZY, ZZ, AAA, AAB, ..., ZZY, ZZZ}
+```
+
+#### Example 3
+
+Consider the Bourne shell, `sh`. The Bourne shell mandates that a symbol
+must consist solely of underscores, Arabic numerals ("0" through "9"),
+and Latin letters (both lowercase and uppercase). The first character of
+a symbol cannot be an Arabic numeral. A symbol must contain at least one
+character. There is no upper limit on the length of a symbol.
+
+In this case, there are infinite symbols within the symbolspace.
+However, we can say for sure that the following symbols are **NOT** in
+the symbolspace:
+
+- `%abc%` because "%" is not allowed in a symbol.
+- `` (empty symbol) because a symbol must contain at least one
+  character.
+- `0` because a symbol cannot start with a digit.
+
+#### Example 4
+
+Consider 64 kibibytes (KiB) of physical memory (RAM). Each memory
+address is a symbol.
+
+Any program loaded into this memory must fit within the symbolspace:
+
+```
+# Hexadecimal notation
+symbolspace = {0x0000, 0x0001, 0x0002, ..., 0xFFFD, 0xFFFE, 0xFFFF}
+```
+
+#### Example 5
+
+Consider the following Python code fragment:
+
+```python
+# Python
+
+# BEGIN CODE FRAGMENT
+
+x = 1
+
+def f(x):
+    x = x + 3 # This does not modify the "x" entity in the global symbolspace.
+    return x * 2
+
+# END CODE FRAGMENT
+
+# For illustrative purposes only:
+print(f(2)) # Prints "10".
+print(f(x)) # Prints "8".
+print(x) # Prints "1" (global "x" was not modified by call to "f").
+```
+
+There are two symbolspaces in this code fragment:
+
+- The code fragment mentions the following symbols in the global
+  symbolspace:
+  - Symbol "x" refers to a data entity.
+  - Symbol "f" refers to an executable entity.
+- The function `f` has its own symbolspace. The code fragment mentions
+  the following symbols in `f`'s symbolspace:
+  - Symbol "x" refers to a data entity that is local to `f`.
+
+Notice that the symbol "x" in `f`'s symbol space does not refer to the
+same entity as symbol "x" in the global symbol space. The two instances
+of the symbol "x" refer to seprate entities. That is why setting `x = x
++ 3` in the body of `f` does not modify the global `x`. In other words,
+we have one symbol, "x", but it is referring to two seprate entities.
+Therefore, we have two separate symbolspaces.
+
+#### Example 6
+
+Consider the following Python code fragment:
+
+```python
+# Python
+
+# BEGIN CODE FRAGMENT
+
+x = 1
+y = 4
+
+def f(z):
+    x = y + 3 # "y" refers to the same entity as the global "y".
+    return z * x
+
+# END CODE FRAGMENT
+
+# For illustrative purposes only:
+print(f(2)) # Prints "14".
+print(f(x)) # Prints "7".
+print(x) # Prints "1" (global "x" was not modified by call to "f").
+```
+
+There are two symbolspaces in this code fragment:
+
+- The code fragment mentions the following symbols in the global
+  symbolspace:
+  - Symbol "x" refers to a data entity.
+  - Symbol "y" refers to a data entity.
+  - Symbol "f" refers to an executable entity.
+- The function `f` has its own symbolspace. The code fragment mentions
+  the following symbols in `f`'s symbolspace:
+  - Symbol "x" refers to a data entity that is local to `f`.
+  - Symbol "y" refers to the same data entity that symbol "y" in the
+    global symbolspace refers to.
+  - Symbol "z" refers to a data entity that is local to `f`.
+
+In this example, notice that in both symbolspaces, the symbol "y" refers
+to the same data entity. It is possible for the same symbol to appear in
+multiple symbol spaces, and refer to the same entity.
+
+#### Example 7
+
+Consider the following Python code fragment:
+
+```python
+# Python
+
+# BEGIN CODE FRAGMENT
+
+x = 1
+x = 2
+x = 3
+
+# END CODE FRAGMENT
+```
+
+In this example, entity `x` changes value. However, the symbol "x" is
+always referring to the same entity.
+
+In other words, it would be incorrect to say "the symbol "x" refers to
+the value `3` at the end of the code fragment". Rather, the symbol "x"
+refers to a single entity throughout the code fragment, and that entity
+holds different values throughout the execution of the code fragment. At
+the end of the code fragment, the entity holds the value `3`.
+
+This illustrates the fact that within a symbolspace, the same symbol
+always refers to the same entity.
+
+#### Example 8
+
+Consider the following Python code fragment:
+
+```python
+# Python
+
+def set_weight(car, weight):
+    car.weight = weight
+
+class Car:
+
+    def __init__(self, weight):
+        self.weight = weight
+
+# Construct new "Car" object and return a REFERENCE to the created object.
+my_car = Car(300)
+
+# BEGIN CODE FRAGMENT
+
+set_weight(my_car, 500)
+
+# END CODE FRAGMENT
+
+# For illustrative purposes only:
+print(my_car.weight) # Prints "500".
+```
+
+In this example, the symbol "my_car" refers to a data entity, which
+holds a reference to an object (an instance of class `Car`). In other
+words, the value of the entity is not the object itself; the value of
+the entity is a reference to the object.
+
+Within the `set_weight` function, the symbol "car" does **NOT** refer to
+the same entity as the symbol "my_car" in the global symbolspace. In
+other words, if we had set `car = 3` in the body of `set_weight`, it
+would not change the value held by the `my_car` entity.
+
+However, when we enter the `set_weight` function, the value of the
+entity that "car" refers to is a **COPY** of the value of the entity
+that "my_car" refers to. In other words, the value of `car` is a
+reference to an object (an instance of class `Car`): the same object
+that the value of `my_car` points to.
+
+The text "car.weight" is like a symbol within `set_weight`'s symbolspace
+(see note below). The symbol "car.weight" refers to the same entity as
+the symbol "my_car.weight" in the global symbolspace.
+
+This is the concept of **_aliasing_**: accessing the same data location
+in memory through different symbolic names.
+
+_**Note:** Technically, "car.weight" is not a symbol in the symbolspace
+of `set_weight`. Why not? Because "car.weight" is not guaranteed to
+always refer to the same entity. For example, if we set `car = Car(700)`
+in the body of `set_weight`, then "car.weight" no longer refers to the
+same entity as "my_car.weight" in the global symbolspace._
+
+#### UNORGANIZED
+
+What kind of entity is a class? That depends on the level of abstraction
+you are working in.
+
+Conceptually, a class is more like a **_symbolspace_** than a full fledged **_entity_**.
+
+Though, in many languages, a class is itself an object with an address
+in physical memory.
+
+What about objects (i.e. instances of classes) which have both data
+attributes and executable attributes? For example, an instance of a
+`Car` class could have a `Car.weight` attribute which is a
+**_data entity_**, and a `Car.drive` attribute which is an
+**_executable entity_**. In this case, the `Car` instance itself is a
+**_data entity_**, and it refers to a 
+
+## Symbolspaces and namespaces
+
+
+
 # 1. Notation
 
 ## Logical notation
