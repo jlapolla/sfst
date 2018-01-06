@@ -71,7 +71,7 @@ symbolspace = {A, B, ..., Y, Z, AA, AB ..., ZY, ZZ, AAA, AAB, ..., ZZY, ZZZ}
 
 Consider the Bourne shell, `sh`. The Bourne shell mandates that a symbol
 must consist solely of underscores, Arabic numerals ("0" through "9"),
-and Latin letters (both lowercase and uppercase). The first character of
+and Latin letters (both uppercase and lowercase). The first character of
 a symbol cannot be an Arabic numeral. A symbol must contain at least one
 character. There is no upper limit on the length of a symbol.
 
@@ -79,10 +79,12 @@ In this case, there are infinite symbols within the symbolspace.
 However, we can say for sure that the following symbols are **NOT** in
 the symbolspace:
 
-- `%abc%` because "%" is not allowed in a symbol.
-- `` (empty symbol) because a symbol must contain at least one
-  character.
-- `0` because a symbol cannot start with a digit.
+- "%abc%" is not in the symbolspace because "%" is not allowed in a
+  symbol.
+- "" (empty symbol) is not in the symbolspace because a symbol must
+  contain at least one character.
+- "0" is not in the symbolspace because a symbol cannot start with a
+  digit.
 
 #### Example 4
 
@@ -131,9 +133,9 @@ There are two symbolspaces in this code fragment:
 
 Notice that the symbol "x" in `f`'s symbol space does not refer to the
 same entity as symbol "x" in the global symbol space. The two instances
-of the symbol "x" refer to seprate entities. That is why setting `x = x
-+ 3` in the body of `f` does not modify the global `x`. In other words,
-we have one symbol, "x", but it is referring to two seprate entities.
+of the symbol "x" refer to seprate entities. That is why setting `x = x + 3`
+in the body of `f` does not modify the global `x`. In other words, we
+have one symbol, "x", but it is referring to two seprate entities.
 Therefore, we have two separate symbolspaces.
 
 #### Example 6
