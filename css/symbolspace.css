@@ -1,0 +1,68 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+td {
+  vertical-align: top;
+}
+
+table {
+  border-collapse: collapse;
+  overflow: hidden;
+}
+
+table.frame > tbody > tr > td:last-child {
+  padding-left: 128px;
+}
+
+table.symbolspace {
+  margin-bottom: 16px;
+  width: 100%;
+  border-radius: 6px;
+  background-color: #e88400;
+}
+
+table:last-child.symbolspace {
+  margin-bottom: 0px;
+}
+
+table.symbolspace > tbody > tr > th {
+  text-align: left;
+}
+
+table.symbolspace > tbody > tr > th::before {
+  content: "Symbolspace: ";
+}
+
+table.symbolspace > tbody > tr > td {
+  background-color: #ffa835;
+}
+
+table.symbolspace > tbody > tr:nth-child(even) > td {
+  background-color: #ffc982;
+}
+
+table.entities {
+  background-color: #afafaf;
+}
+
+table.entities > tbody > tr > th {
+  text-align: left;
+}
+
+table.entities > tbody > tr > td, table.entities > tbody > tr > td {
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-left-color: #636363;
+}
+
+table.entities > tbody > tr > td {
+  background-color: #fbfbfb;
+}
+
+table.entities > tbody > tr:nth-child(even) > td {
+  background-color: #d5d5d5;
+}
+
