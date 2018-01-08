@@ -13,14 +13,27 @@ table {
   overflow: hidden;
 }
 
+table.entities > tbody > tr > td,
+table.entities > tbody > tr > th,
+table.symbolspace > tbody > tr > td,
+table.symbolspace > tbody > tr > th
+{
+  padding: 4px;
+}
+
 table.frame > tbody > tr > td:last-child {
   padding-left: 128px;
 }
 
-table.symbolspace {
-  margin-bottom: 16px;
+table.entities,
+table.symbolspace
+{
   width: 100%;
   border-radius: 6px;
+}
+
+table.symbolspace {
+  margin-bottom: 16px;
   background-color: #e88400;
 }
 
@@ -52,10 +65,14 @@ table.entities > tbody > tr > th {
   text-align: left;
 }
 
-table.entities > tbody > tr > td, table.entities > tbody > tr > td {
+table.entities > tbody > tr > td, table.entities > tbody > tr > th {
   border-left-style: solid;
   border-left-width: 1px;
   border-left-color: #636363;
+}
+
+table.entities > tbody > tr > td:first-child, table.entities > tbody > tr > th:first-child {
+  border-left-style: none;
 }
 
 table.entities > tbody > tr > td {
