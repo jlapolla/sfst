@@ -3,80 +3,69 @@
     <link rel="stylesheet" href="../css/symbolspace.css">
   </head>
   <body>
-    <table class="frame">
-      <tr>
-        <td>
-          <table class="symbolspace">
-            <tr><th>global</th></tr>
-            <tr><td>set_weight</td></tr>
-            <tr><td>my_car</td></tr>
-          </table>
-          <table class="symbolspace">
-            <tr><th>set_weight</th></tr>
-            <tr><td>car</td></tr>
-            <tr><td>weight</td></tr>
-          </table>
-        </td>
-        <td>
-          <table class="entities">
-            <tr><th>Entity ID</th><th>Entity type</th><th>Entity value</th></tr>
-            <tr>
-              <td>0x01</td>
-              <td>Executable code</td>
-              <td>car.weight = weight</td>
-            </tr>
-            <tr>
-              <td>0x02</td>
-              <td>Integer</td>
-              <td>300</td>
-            </tr>
-            <tr>
-              <td>0x03</td>
-              <td>Car object</td>
-              <td>
-                <table class="symbolspace">
-                  <tr><th>Entity 0x03</th></tr>
-                  <tr><td>weight</td></tr>
-                </table>
-              </td>
-            </tr>
-            <tr>
-              <td>0x04</td>
-              <td>Reference to Car object</td>
-              <td>0x03</td>
-            </tr>
-            <tr>
-              <td>0x05</td>
-              <td>Reference to Car object</td>
-              <td>0x03</td>
-            </tr>
-            <tr>
-              <td>0x06</td>
-              <td>Integer</td>
-              <td>500</td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    </table>
+    <div class="container">
+      <table class="frame">
+        <tr>
+          <td>
+            <table class="symbolspace">
+              <tr><th>global</th></tr>
+              <tr><td>set_weight</td></tr>
+              <tr><td>my_car</td></tr>
+            </table>
+            <table class="symbolspace">
+              <tr><th>set_weight</th></tr>
+              <tr><td>car</td></tr>
+              <tr><td>weight</td></tr>
+            </table>
+          </td>
+          <td>
+            <table class="entities">
+              <tr><th>Entity ID</th><th>Entity type</th><th>Entity value</th></tr>
+              <tr>
+                <td>0x01</td>
+                <td>Executable code</td>
+                <td>car.weight = weight</td>
+              </tr>
+              <tr>
+                <td>0x02</td>
+                <td>Integer</td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td>0x03</td>
+                <td>Integer</td>
+                <td>300</td>
+              </tr>
+              <tr>
+                <td>0x04</td>
+                <td>Car object</td>
+                <td>
+                  <table class="symbolspace">
+                    <tr><th>Entity</th></tr>
+                    <tr><td>length</td></tr>
+                    <tr><td>weight</td></tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>0x05</td>
+                <td>Reference to Car object</td>
+                <td>0x03</td>
+              </tr>
+              <tr>
+                <td>0x06</td>
+                <td>Reference to Car object</td>
+                <td>0x03</td>
+              </tr>
+              <tr>
+                <td>0x07</td>
+                <td>Integer</td>
+                <td>500</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
   </body>
-  <div style="display:none">
-    <!-- Templates -->
-    <table class="symbolspace">
-      <tr><th></th></tr>
-      <tr><td></td></tr>
-      <tr><td></td></tr>
-    </table>
-    <table class="entities">
-      <tr><th>Entity ID</th><th>Entity value</th></tr>
-      <tr>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-      </tr>
-    </table>
-  </div>
 </html>

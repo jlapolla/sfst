@@ -220,11 +220,12 @@ def set_weight(car, weight):
 
 class Car:
 
-    def __init__(self, weight):
+    def __init__(self, length, weight):
+        self.length = length
         self.weight = weight
 
 # Construct new "Car" object and return a REFERENCE to the created object.
-my_car = Car(300)
+my_car = Car(7, 300)
 
 # BEGIN CODE FRAGMENT
 
