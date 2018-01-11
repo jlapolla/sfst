@@ -8,14 +8,16 @@
         <tr>
           <td>
             <table class="symbolspace">
-              <tr><th>global</th></tr>
-              <tr><td>set_weight</td></tr>
-              <tr><td>my_car</td></tr>
+              <tr><th colspan="2">global</th></tr>
+              <tr><th>Symbol</th><th>Entity ID</th></tr>
+              <tr><td>set_weight</td><td>0x02</td></tr>
+              <tr><td>my_car</td><td>0x06</td></tr>
             </table>
             <table class="symbolspace">
-              <tr><th>set_weight</th></tr>
-              <tr><td>car</td></tr>
-              <tr><td>weight</td></tr>
+              <tr><th colspan="2">set_weight</th></tr>
+              <tr><th>Symbol</th><th>Entity ID</th></tr>
+              <tr><td>car</td><td>0x07</td></tr>
+              <tr><td>weight</td><td>0x08</td></tr>
             </table>
           </td>
           <td>
@@ -28,37 +30,43 @@
               </tr>
               <tr>
                 <td>0x02</td>
+                <td>Reference to executable code</td>
+                <td>0x01</td>
+              </tr>
+              <tr>
+                <td>0x03</td>
                 <td>Integer</td>
                 <td>7</td>
               </tr>
               <tr>
-                <td>0x03</td>
+                <td>0x04</td>
                 <td>Integer</td>
                 <td>300</td>
               </tr>
               <tr>
-                <td>0x04</td>
+                <td>0x05</td>
                 <td>Car object</td>
                 <td>
                   <table class="symbolspace">
-                    <tr><th>Entity</th></tr>
-                    <tr><td>length</td></tr>
-                    <tr><td>weight</td></tr>
+                    <tr><th colspan="2">Entity</th></tr>
+                    <tr><th>Symbol</th><th>Entity ID</th></tr>
+                    <tr><td>length</td><td>0x03</td></tr>
+                    <tr><td>weight</td><td>0x04</td></tr>
                   </table>
                 </td>
               </tr>
               <tr>
-                <td>0x05</td>
-                <td>Reference to Car object</td>
-                <td>0x03</td>
-              </tr>
-              <tr>
                 <td>0x06</td>
                 <td>Reference to Car object</td>
-                <td>0x03</td>
+                <td>0x05</td>
               </tr>
               <tr>
                 <td>0x07</td>
+                <td>Reference to Car object</td>
+                <td>0x05</td>
+              </tr>
+              <tr>
+                <td>0x08</td>
                 <td>Integer</td>
                 <td>500</td>
               </tr>

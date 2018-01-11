@@ -53,15 +53,19 @@ table.symbolspace > tbody > tr > th {
   text-align: left;
 }
 
-table.symbolspace > tbody > tr > th::before {
+table.symbolspace > tbody > tr:first-child > th::before {
   content: "Symbolspace: ";
+}
+
+table.symbolspace > tbody > tr:nth-child(2) > th {
+  font-size: 12px;
 }
 
 table.symbolspace > tbody > tr > td {
   background-color: #ffa835;
 }
 
-table.symbolspace > tbody > tr:nth-child(even) > td {
+table.symbolspace > tbody > tr:nth-child(odd) > td {
   background-color: #ffc982;
 }
 
