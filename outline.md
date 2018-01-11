@@ -255,7 +255,7 @@ symbolspace. However, this would be incorrect because `car.weight` is
 not guaranteed to always refer to the same entity. For example, if we
 set `car = Car(8, 700)`, then `car.weight` no longer refers to entity
 0x04. Compare this to `car`, which **IS** a symbol in `set_weight`'s
-symbolspace: no matter what we do, `car` will always refer to entity
+symbolspace; no matter what we do, `car` will always refer to entity
 0x07.
 
 So, `car.weight` is not a symbol. Instead, it's better to think of the
