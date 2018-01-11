@@ -227,7 +227,7 @@ class Car:
 # Construct new "Car" object and return a REFERENCE to the created object.
 my_car = Car(7, 300)
 
-set_weight(my_car, 500) // Line 14
+set_weight(my_car, 500) # Line 14
 
 # For illustrative purposes only:
 print(my_car.weight) # Prints "500".
