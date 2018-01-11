@@ -227,44 +227,41 @@ class Car:
 # Construct new "Car" object and return a REFERENCE to the created object.
 my_car = Car(7, 300)
 
-# BEGIN CODE FRAGMENT
-
-set_weight(my_car, 500)
-
-# END CODE FRAGMENT
+set_weight(my_car, 500) // Line 14
 
 # For illustrative purposes only:
 print(my_car.weight) # Prints "500".
 ```
 
-In this example, the symbol "my_car" refers to a data entity, which
-holds a reference to an object (an instance of class `Car`). In other
-words, the value of the entity is not the object itself; the value of
-the entity is a reference to the object.
+When we enter the `set_weight` function at line 14, we have the
+following symbols and entities:
 
-Within the `set_weight` function, the symbol "car" does **NOT** refer to
-the same entity as the symbol "my_car" in the global symbolspace. In
-other words, if we had set `car = 3` in the body of `set_weight`, it
-would not change the value held by the `my_car` entity.
+![](png/example-0-8.png)
 
-However, when we enter the `set_weight` function, the value of the
-entity that "car" refers to is a **COPY** of the value of the entity
-that "my_car" refers to. In other words, the value of `car` is a
-reference to an object (an instance of class `Car`): the same object
-that the value of `my_car` points to.
+Notice that `my_car` and `car` refer to separate entities. They both
+refer to reference entities, which in turn refer to a `Car` object. In
+this case, both entities refer to the same `Car` object: entity 0x05. In
+other words, if we set `car = 128` in the function `set_weight`, then
+the value in entity 0x07 becomes 128, the type of entity 0x07 becomes
+"integer", and the values in entities 0x05 and 0x06 remain unchanged.
 
-The text "car.weight" is like a symbol within `set_weight`'s symbolspace
-(see note below). The symbol "car.weight" refers to the same entity as
-the symbol "my_car.weight" in the global symbolspace.
+On the other hand, when we set `car.weight = weight` in the function
+`set_weight`, this modifies entity 0x03. Since entity 0x03 is also
+reachable from the global symbolspace, we can observe the change after
+the `set_weight` function returns. This is an example of **_aliasing_**.
 
-This is the concept of **_aliasing_**: accessing the same data location
-in memory through different symbolic names.
+We might be tempted to treat `car.weight` as a symbol in `set_weight`'s
+symbolspace. However, this would be incorrect because `car.weight` is
+not guaranteed to always refer to the same entity. For example, if we
+set `car = Car(8, 700)`, then `car.weight` no longer refers to entity
+0x03. Instead, it's better to think of the `Car` object (entity 0x05) as
+containing a symbolspace as its value. When we add `.weight` to the end
+of `car`, we are refering to the `weight` symbol in entity 0x05's
+symbolspace (which is entity 0x03 in this case).
 
-_**Note:** Technically, "car.weight" is not a symbol in the symbolspace
-of `set_weight`. Why not? Because "car.weight" is not guaranteed to
-always refer to the same entity. For example, if we set `car = Car(700)`
-in the body of `set_weight`, then "car.weight" no longer refers to the
-same entity as "my_car.weight" in the global symbolspace._
+*Note: In Python, the symbol "Car" in the global symbolspace refers to
+an entity which is a reference to a "class object". This detail has been
+omitted in the figure.*
 
 #### UNORGANIZED
 
