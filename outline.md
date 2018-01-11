@@ -246,7 +246,7 @@ the value in entity 0x07 becomes 128, the type of entity 0x07 becomes
 "integer", and the values in entities 0x05 and 0x06 remain unchanged.
 
 On the other hand, when we set `car.weight = weight` in the function
-`set_weight`, this modifies entity 0x03. Since entity 0x03 is also
+`set_weight`, this modifies entity 0x04. Since entity 0x04 is also
 reachable from the global symbolspace, we can observe the change after
 the `set_weight` function returns. This is an example of **_aliasing_**.
 
@@ -254,10 +254,10 @@ We might be tempted to treat `car.weight` as a symbol in `set_weight`'s
 symbolspace. However, this would be incorrect because `car.weight` is
 not guaranteed to always refer to the same entity. For example, if we
 set `car = Car(8, 700)`, then `car.weight` no longer refers to entity
-0x03. Instead, it's better to think of the `Car` object (entity 0x05) as
+0x04. Instead, it's better to think of the `Car` object (entity 0x05) as
 containing a symbolspace as its value. When we add `.weight` to the end
 of `car`, we are refering to the `weight` symbol in entity 0x05's
-symbolspace (which is entity 0x03 in this case).
+symbolspace (which is entity 0x04 in this case).
 
 *Note: In Python, the symbol "Car" in the global symbolspace refers to
 an entity which is a reference to a "class object". This detail has been
