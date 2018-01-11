@@ -227,13 +227,13 @@ class Car:
 # Construct new "Car" object and return a REFERENCE to the created object.
 my_car = Car(7, 300)
 
-set_weight(my_car, 500) # Line 14
+set_weight(my_car, 500) # Line 15
 
 # For illustrative purposes only:
 print(my_car.weight) # Prints "500".
 ```
 
-When we enter the `set_weight` function at line 14, we have the
+When we enter the `set_weight` function at line 15, we have the
 following symbols and entities:
 
 ![](png/example-0-8.png)
