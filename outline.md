@@ -254,10 +254,15 @@ We might be tempted to treat `car.weight` as a symbol in `set_weight`'s
 symbolspace. However, this would be incorrect because `car.weight` is
 not guaranteed to always refer to the same entity. For example, if we
 set `car = Car(8, 700)`, then `car.weight` no longer refers to entity
-0x04. Instead, it's better to think of the `Car` object (entity 0x05) as
-containing a symbolspace as its value. When we add `.weight` to the end
-of `car`, we are refering to the `weight` symbol in entity 0x05's
-symbolspace (which is entity 0x04 in this case).
+0x04. Compare this to `car`, which **IS** a symbol in `set_weight`'s
+symbolspace: no matter what we do, `car` will always refer to entity
+0x07.
+
+So, `car.weight` is not a symbol. Instead, it's better to think of the
+`Car` object (entity 0x05) as containing a symbolspace as its value.
+When we add `.weight` to the end of `car`, we are refering to the
+`weight` symbol in entity 0x05's symbolspace (which is entity 0x04 in
+this case).
 
 *Note: In Python, the symbol "Car" in the global symbolspace refers to
 an entity which is a reference to a "class object". This detail has been
